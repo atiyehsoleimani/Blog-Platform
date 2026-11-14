@@ -2,3 +2,7 @@
 __pycache__/
 .env
 uploads/
+.vscode/
+architecture.png
+architecture.pdf
+db_connection.session.sql
