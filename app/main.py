@@ -3,6 +3,7 @@ from app.database import get_db
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.routes.auth import router as auth_router
+from app.routes.posts import router as post_router
 
 app = FastAPI(title="Blog Platform")
 
@@ -14,3 +15,4 @@ def health(db: Session=Depends(get_db)):
     return {"status": "ok", "database": "ok"}
 
 app.include_router(auth_router)
+app.include_router(post_router)

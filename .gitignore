@@ -6,3 +6,5 @@ uploads/
 architecture.png
 architecture.pdf
 db_connection.session.sql
+diagrams/
+.DS_Store
