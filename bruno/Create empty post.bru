@@ -1,0 +1,29 @@
+meta {
+  name: Create empty post
+  type: http
+  seq: 9
+}
+
+post {
+  url: http://127.0.0.1:8000/posts
+  body: json
+  auth: bearer
+}
+
+headers {
+  Authorization: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0IiwiZXhwIjoxNzk1NTQxNjYwfQ._4HFX01u6imdTBGsL48NVR4trUsbySntdOnZHmp3L2Q
+}
+
+body:json {
+  {}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

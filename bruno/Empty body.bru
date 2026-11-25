@@ -1,0 +1,29 @@
+meta {
+  name: Empty body
+  type: http
+  seq: 16
+}
+
+patch {
+  url: http://127.0.0.1:8000/posts/7
+  body: json
+  auth: bearer
+}
+
+headers {
+  Authorization: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImV4cCI6MTc5NTYwMDM1Nn0.YIof9DmXnKFVEuyKjS15rX2nhuU1Bb1X4wpCwOtqvg4
+}
+
+body:json {
+  {"body": ""}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

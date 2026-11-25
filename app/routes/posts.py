@@ -1,6 +1,6 @@
 
-from app.schemas.post import PostCreate, PostRead
-from fastapi import Depends, APIRouter, HTTPException, status
+from app.schemas.post import PostCreate, PostRead, PostUpdate
+from fastapi import Depends, APIRouter, HTTPException
 from app.use_cases.post_use_cases import PostUseCases, PostNotFoundError, PostPermissionError
 from app.dependencies import get_post_repository, get_post_use_cases, get_current_user
 from app.schemas.user import UserRead
@@ -24,6 +24,19 @@ def get_post(post_id: int, post_use_case: PostUseCases=Depends(get_post_use_case
 @router.get("/users/{user_id}/posts")
 def list_posts(user_id: int, post_use_case: PostUseCases=Depends(get_post_use_cases)) -> list[PostRead]:
     return post_use_case.list_posts(author_id=user_id)
+
+@router.patch("/posts/{post_id}")
+def edit(post_id: int, post_in: PostUpdate, post_use_case: PostUseCases=Depends(get_post_use_cases),
+            current_user: UserRead=Depends(get_current_user)) -> PostRead:
+    
+        try:
+            post=post_use_case.edit(post_id=post_id, post_in=post_in, current_user_id=current_user.id)
+            return post
+        except PostPermissionError as e :
+            raise HTTPException(status_code=403, detail=e.detail)
+        except PostNotFoundError as e:
+            raise HTTPException(status_code=404, detail=e.detail)
+        
 
 @router.delete("/posts/{post_id}", status_code=204)
 def delete(post_id: int, post_use_case: PostUseCases=Depends(get_post_use_cases),

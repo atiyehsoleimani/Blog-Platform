@@ -1,0 +1,19 @@
+meta {
+  name: Delete post
+  type: http
+  seq: 9
+}
+
+delete {
+  url: http://127.0.0.1:8000/posts/6
+  body: none
+  auth: bearer
+}
+
+headers {
+  Authorization: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImV4cCI6MTc5NTUxOTQ0N30.WsOBOtA8wzNRdCLfBXrrPEq3s1VZ-Ih6QmTarSTeTGo
+}

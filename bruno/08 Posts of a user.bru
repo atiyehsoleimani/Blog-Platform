@@ -1,0 +1,19 @@
+meta {
+  name: Posts of a user
+  type: http
+  seq: 8
+}
+
+get {
+  url: http://127.0.0.1:8000/users/11/posts
+  body: none
+  auth: bearer
+}
+
+headers {
+  Authorization: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImV4cCI6MTc5NTYwMDM1Nn0.YIof9DmXnKFVEuyKjS15rX2nhuU1Bb1X4wpCwOtqvg4
+}

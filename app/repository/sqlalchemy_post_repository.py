@@ -33,6 +33,17 @@ class SqlAlchemyPostRepository(PostRepository):
         self.session.refresh(post)
         return PostRead.model_validate(post)
 
+    def edit(self, post_id: int, title: str | None, body: str | None) -> PostRead:
+        post = self.session.get(Post, post_id)
+        if body is not None:
+            post.body = body
+        if title is not None:
+            post.title = title
+        self.session.add(post)
+        self.session.commit()
+        self.session.refresh(post)
+        return PostRead.model_validate(post)
+
     def delete(self, post_id: int):
         post = self.session.get(Post, post_id)
         self.session.delete(post)

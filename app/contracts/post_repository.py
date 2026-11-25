@@ -16,6 +16,9 @@ class PostRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    def edit(self, post_id: int, title:str | None, body: str | None) -> PostRead:
+        raise NotImplementedError
+    @abstractmethod
     def delete(self, post_id: int):
         raise NotImplementedError
 

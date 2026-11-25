@@ -1,0 +1,32 @@
+meta {
+  name: Update only title
+  type: http
+  seq: 15
+}
+
+patch {
+  url: http://127.0.0.1:8000/posts/8
+  body: json
+  auth: bearer
+}
+
+headers {
+  Authorization: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMSIsImV4cCI6MTc5NTYwMDM1Nn0.YIof9DmXnKFVEuyKjS15rX2nhuU1Bb1X4wpCwOtqvg4
+}
+
+body:json {
+  {
+    "title": "updated ahmad post #8 title "
+    
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

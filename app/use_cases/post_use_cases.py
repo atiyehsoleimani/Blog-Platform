@@ -1,12 +1,12 @@
 from app.contracts.post_repository import PostRepository
-from app.schemas.post import PostRead, PostCreate
-from app.schemas.user import UserRead
+from app.schemas.post import PostRead, PostCreate, PostUpdate
+
 
 class PostNotFoundError(Exception):
     detail="Post Not Found"
 
 class PostPermissionError(Exception):
-    detail="You do not delete permission on this post"
+    detail="You do not delete/update permission on this post"
 
 class PostUseCases:
     def __init__(self, repo):
@@ -16,8 +16,15 @@ class PostUseCases:
         return self.repo.add(title=post.title, body=post.body, author_id=author_id)
         
 
-    def edit(self, post_id: int, post: PostCreate, author_id: int) -> PostRead:
-        pass
+    def edit(self, post_id: int, post_in: PostUpdate, current_user_id: int) -> PostRead:
+
+        post = self.repo.get_by_id(post_id)
+        if post is None:
+            raise PostNotFoundError
+        if post.author_id != current_user_id:
+            raise PostPermissionError
+        
+        return self.repo.edit(post_id, post_in.title, post_in.body)
 
     def delete(self, post_id: int, current_user_id: int):
         post = self.repo.get_by_id(post_id)

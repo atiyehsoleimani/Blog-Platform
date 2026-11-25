@@ -1,0 +1,19 @@
+meta {
+  name: Register Mary
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://127.0.0.1:8000/auth/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "mary@example.com",
+    "username": "mary2",
+    "password": "secret123"
+  }
+}

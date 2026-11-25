@@ -1,0 +1,16 @@
+meta {
+  name: Login aliali
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://127.0.0.1:8000/auth/login
+  body: formUrlEncoded
+  auth: none
+}
+
+body:form-urlencoded {
+  username: aliali@example.com
+  password: alialiali
+}

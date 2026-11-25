@@ -1,0 +1,32 @@
+meta {
+  name: Edit post 999
+  type: http
+  seq: 13
+}
+
+patch {
+  url: http://127.0.0.1:8000/posts/999
+  body: json
+  auth: bearer
+}
+
+headers {
+  Authorization: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0IiwiZXhwIjoxNzk1NTQxMTcyfQ.LOCJvD0JwGeCFVGQXYYJzGexrXGSMXafEfPnvQnIL5U
+}
+
+body:json {
+  {
+    "title": "update post",
+    "body": "Update a post that do not exite"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}
