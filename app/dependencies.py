@@ -27,5 +27,5 @@ def get_current_user(
 def get_post_repository(session: SessionLocal=Depends(get_db)) -> PostRepository:
     return SqlAlchemyPostRepository(session)
 
-def get_post_use_cases(repository: PostRepository=Depends(get_post_repository)) -> PostUseCases:
-    return PostUseCases(repository)
+def get_post_use_cases(repository: PostRepository=Depends(get_post_repository), user_repository: UserRepository=Depends(get_user_repository)) -> PostUseCases:
+    return PostUseCases(repo=repository, user_repo=user_repository)

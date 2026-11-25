@@ -17,10 +17,10 @@ class SqlAlchemyPostRepository(PostRepository):
         else:
             return None
 
-    def get_by_author(self, author_id: int) -> list[PostRead]:
+    def get_by_author(self, author_id: int, limit: int, offset: int) -> list[PostRead]:
 
         post_reads=[]
-        posts = self.session.scalars(select(Post).where(Post.author_id == author_id).order_by(Post.created_at.desc())).all()
+        posts = self.session.scalars(select(Post).where(Post.author_id == author_id).order_by(Post.created_at.desc(), Post.id.desc()).limit(limit=limit).offset(offset=offset)).all()
         for post in posts:
             post_reads.append(PostRead.model_validate(post))
         return post_reads   

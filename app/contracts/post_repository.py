@@ -8,7 +8,7 @@ class PostRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def get_by_author(self, author_id: int) -> list[PostRead]:
+    def get_by_author(self, author_id: int, limit: int, offset: int) -> list[PostRead]:
         raise NotImplementedError
 
     @abstractmethod
